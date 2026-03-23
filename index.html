@@ -2,38 +2,37 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>التقييم النهائي للمراكز - الدفاع المدني</title>
+    <title>التقييم النهائي للمراكز</title>
     <style>
-        :root { --primary-red: #d32f2f; --dark-blue: #2c3e50; --light-bg: #f4f7f6; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); margin: 0; padding: 20px; direction: rtl; }
-        .container { width: 98%; max-width: 1300px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 12px solid var(--primary-red); }
+        :root { --primary-red: #d32f2f; --dark-blue: #2c3e50; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; direction: rtl; }
+        .container { width: 98%; max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 10px solid var(--primary-red); }
         
         .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
         .logo { max-width: 150px; height: auto; }
         .header-title { text-align: center; flex-grow: 1; }
-        .header-title h1 { color: var(--dark-blue); margin: 0; font-size: 26px; }
-        .header-title p { color: var(--primary-red); font-weight: bold; font-size: 18px; margin-top: 5px; }
-
-        h3 { background: var(--dark-blue); color: white; padding: 12px 20px; border-radius: 5px; margin-top: 35px; font-size: 18px; }
+        .header-title h1 { color: var(--dark-blue); margin: 0; font-size: 26px; border: 2px solid var(--dark-blue); padding: 10px; display: inline-block; }
 
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background-color: var(--dark-blue); color: white; padding: 15px; border: 1px solid #34495e; font-size: 15px; }
-        td { border: 1px solid #ddd; padding: 12px; text-align: center; font-size: 15px; }
+        th { background-color: var(--dark-blue); color: white; padding: 15px; border: 1px solid #000; font-size: 16px; }
+        td { border: 1px solid #000; padding: 12px; text-align: center; font-size: 16px; font-weight: bold; }
         tr:nth-child(even) { background-color: #f8f9fa; }
 
-        .input-score { width: 80px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; }
+        .input-score { width: 70px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; font-size: 16px; }
         .avg-cell { font-weight: bold; color: var(--primary-red); font-size: 18px; background-color: #fff9c4; }
         
-        .status-badge { padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; display: inline-block; min-width: 95px; border: 1px solid; text-align: center; }
-        .status-excellent { background: #1b5e20; color: white; border-color: #1b5e20; } /* ممتاز 90+ */
-        .status-vgood { background: #4caf50; color: white; border-color: #4caf50; }     /* جيد جداً 80+ */
-        .status-good { background: #fff176; color: #f57f17; border-color: #fbc02d; }     /* جيد 70+ */
-        .status-fair { background: #ffcc80; color: #e65100; border-color: #ef6c00; }     /* مقبول 60+ */
-        .status-weak { background: #ffcdd2; color: #b71c1c; border-color: #b71c1c; }     /* ضعيف أقل من 60 */
+        /* تنسيق شارات التصنيف */
+        .status-badge { padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; display: inline-block; min-width: 90px; border: 1px solid; text-align: center; }
+        .status-excellent { background: #1b5e20; color: white; border-color: #1b5e20; }
+        .status-vgood { background: #4caf50; color: white; border-color: #4caf50; }
+        .status-good { background: #fff176; color: #f57f17; border-color: #fbc02d; }
+        .status-fair { background: #ffcc80; color: #e65100; border-color: #ef6c00; }
+        .status-weak { background: #ffcdd2; color: #b71c1c; border-color: #b71c1c; }
 
-        .btn-print { display: block; width: 280px; margin: 40px auto; padding: 15px; background: var(--primary-red); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .btn-print { display: block; width: 250px; margin: 30px auto; padding: 15px; background: var(--primary-red); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-print:hover { background: #b71c1c; transform: translateY(-2px); }
         
-        @media print { .btn-print { display: none; } .container { box-shadow: none; border: none; width: 100%; padding: 0; } input { border: none !important; } }
+        @media print { .btn-print { display: none; } .container { box-shadow: none; border: none; width: 100%; } input { border: none !important; appearance: none; -moz-appearance: textfield; } }
     </style>
 </head>
 <body>
@@ -43,12 +42,10 @@
         <img src="logo.png" alt="شعار الهيئة" class="logo">
         <div class="header-title">
             <h1>التقييم النهائي للمراكز</h1>
-            <p>ملخص الأداء العام</p>
         </div>
         <div style="width:150px"></div>
     </div>
 
-    <h3>أولاً: تقييم الفئات (أ، ب، ج) والتصنيف الخماسي</h3>
     <table>
         <thead>
             <tr>
@@ -62,14 +59,15 @@
         </thead>
         <tbody>
             <script>
+                // المراكز الثمانية المطلوبة 
                 const centers = ["مركز الصجعة", "مركز مويلح", "مركز سمنان", "مركز الإدارة", "مركز الميناء", "مركز الحمرية", "مركز الذيد", "مركز المدام"];
                 centers.forEach((center, index) => {
                     document.write(`
                         <tr>
-                            <td><b>${center}</b></td>
-                            <td><input type="number" class="input-score c-${index}" placeholder="0" oninput="calcCenter(${index})" max="100"></td>
-                            <td><input type="number" class="input-score c-${index}" placeholder="0" oninput="calcCenter(${index})" max="100"></td>
-                            <td><input type="number" class="input-score c-${index}" placeholder="0" oninput="calcCenter(${index})" max="100"></td>
+                            <td>${center}</td>
+                            <td><input type="number" class="input-score c-${index}" oninput="calculate(${index})" max="100"> / 100</td>
+                            <td><input type="number" class="input-score c-${index}" oninput="calculate(${index})" max="100"> / 100</td>
+                            <td><input type="number" class="input-score c-${index}" oninput="calculate(${index})" max="100"> / 100</td>
                             <td class="avg-cell" id="avg-${index}">0%</td>
                             <td id="rank-${index}">-</td>
                         </tr>
@@ -79,37 +77,11 @@
         </tbody>
     </table>
 
-    <h3>ثانياً: إحصائيات الأفراد ونسبة النجاح</h3>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 20%;">المركز</th>
-                <th style="width: 15%;">عدد الأفراد</th>
-                <th style="width: 15%;">نسبة النجاح (≥75%)</th>
-                <th style="width: 50%;">ملاحظات الأداء العام</th>
-            </tr>
-        </thead>
-        <tbody>
-            <script>
-                centers.forEach(center => {
-                    document.write(`
-                        <tr>
-                            <td><b>${center}</b></td>
-                            <td><input type="number" class="input-score" style="width:100px"></td>
-                            <td><input type="text" class="input-score" style="width:80px" placeholder="%"></td>
-                            <td><input type="text" style="width:95%; padding:10px; border:1px solid #ccc; border-radius:4px;" placeholder="أضف الملاحظات..."></td>
-                        </tr>
-                    `);
-                });
-            </script>
-        </tbody>
-    </table>
-
-    <button class="btn-print" onclick="window.print()">طباعة التقرير النهائي الشامل</button>
+    <button class="btn-print" onclick="window.print()">طباعة التقرير / حفظ PDF</button>
 </div>
 
 <script>
-    function calcCenter(idx) {
+    function calculate(idx) {
         let inputs = document.querySelectorAll('.c-' + idx);
         let sum = 0;
         let count = 0;
@@ -125,20 +97,13 @@
         
         let rankCell = document.getElementById('rank-' + idx);
         
-        // التعديل هنا لضمان دقة التقديرات حسب النطاق الجديد
-        if (avg >= 90) { 
-            rankCell.innerHTML = '<span class="status-badge status-excellent">ممتاز</span>'; 
-        } else if (avg >= 80) { 
-            rankCell.innerHTML = '<span class="status-badge status-vgood">جيد جداً</span>'; 
-        } else if (avg >= 70) { 
-            rankCell.innerHTML = '<span class="status-badge status-good">جيد</span>'; 
-        } else if (avg >= 60) { 
-            rankCell.innerHTML = '<span class="status-badge status-fair">مقبول</span>'; 
-        } else if (avg > 0) { 
-            rankCell.innerHTML = '<span class="status-badge status-weak">ضعيف</span>'; 
-        } else { 
-            rankCell.innerText = "-"; 
-        }
+        // تطبيق المعايير (جيد جداً يبدأ من 80)
+        if(avg >= 90) { rankCell.innerHTML = '<span class="status-badge status-excellent">ممتاز</span>'; }
+        else if(avg >= 80) { rankCell.innerHTML = '<span class="status-badge status-vgood">جيد جداً</span>'; }
+        else if(avg >= 70) { rankCell.innerHTML = '<span class="status-badge status-good">جيد</span>'; }
+        else if(avg >= 60) { rankCell.innerHTML = '<span class="status-badge status-fair">مقبول</span>'; }
+        else if(avg > 0) { rankCell.innerHTML = '<span class="status-badge status-weak">ضعيف</span>'; }
+        else { rankCell.innerText = "-"; }
     }
 </script>
 
