@@ -24,7 +24,6 @@
         .input-score { width: 80px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; }
         .avg-cell { font-weight: bold; color: var(--primary-red); font-size: 18px; background-color: #fff9c4; }
         
-        /* تنسيق شارات التصنيف الخماسي المعدلة */
         .status-badge { padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; display: inline-block; min-width: 95px; border: 1px solid; text-align: center; }
         .status-excellent { background: #1b5e20; color: white; border-color: #1b5e20; } /* ممتاز 90+ */
         .status-vgood { background: #4caf50; color: white; border-color: #4caf50; }     /* جيد جداً 80+ */
@@ -32,8 +31,7 @@
         .status-fair { background: #ffcc80; color: #e65100; border-color: #ef6c00; }     /* مقبول 60+ */
         .status-weak { background: #ffcdd2; color: #b71c1c; border-color: #b71c1c; }     /* ضعيف أقل من 60 */
 
-        .btn-print { display: block; width: 280px; margin: 40px auto; padding: 15px; background: var(--primary-red); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(211,47,47,0.3); transition: 0.3s; }
-        .btn-print:hover { background: #b71c1c; transform: translateY(-2px); }
+        .btn-print { display: block; width: 280px; margin: 40px auto; padding: 15px; background: var(--primary-red); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
         
         @media print { .btn-print { display: none; } .container { box-shadow: none; border: none; width: 100%; padding: 0; } input { border: none !important; } }
     </style>
@@ -127,13 +125,20 @@
         
         let rankCell = document.getElementById('rank-' + idx);
         
-        // تطبيق معيارك: جيد جداً يبدأ من 80
-        if(avg >= 90) { rankCell.innerHTML = '<span class="status-badge status-excellent">ممتاز</span>'; }
-        else if(avg >= 80) { rankCell.innerHTML = '<span class="status-badge status-vgood">جيد جداً</span>'; }
-        else if(avg >= 70) { rankCell.innerHTML = '<span class="status-badge status-good">جيد</span>'; }
-        else if(avg >= 60) { rankCell.innerHTML = '<span class="status-badge status-fair">مقبول</span>'; }
-        else if(avg > 0) { rankCell.innerHTML = '<span class="status-badge status-weak">ضعيف</span>'; }
-        else { rankCell.innerText = "-"; }
+        // التعديل هنا لضمان دقة التقديرات حسب النطاق الجديد
+        if (avg >= 90) { 
+            rankCell.innerHTML = '<span class="status-badge status-excellent">ممتاز</span>'; 
+        } else if (avg >= 80) { 
+            rankCell.innerHTML = '<span class="status-badge status-vgood">جيد جداً</span>'; 
+        } else if (avg >= 70) { 
+            rankCell.innerHTML = '<span class="status-badge status-good">جيد</span>'; 
+        } else if (avg >= 60) { 
+            rankCell.innerHTML = '<span class="status-badge status-fair">مقبول</span>'; 
+        } else if (avg > 0) { 
+            rankCell.innerHTML = '<span class="status-badge status-weak">ضعيف</span>'; 
+        } else { 
+            rankCell.innerText = "-"; 
+        }
     }
 </script>
 
