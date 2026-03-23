@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>التقييم النهائي للمراكز - الدفاع المدني</title>
+    <style>
+        :root { --primary-red: #d32f2f; --dark-blue: #2c3e50; --light-bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); margin: 0; padding: 20px; }
+        .container { width: 98%; max-width: 1300px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 12px solid var(--primary-red); }
+        
+        .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+        .logo { max-width: 150px; }
+        .header-title { text-align: center; flex-grow: 1; }
+        .header-title h1 { color: var(--dark-blue); margin: 0; font-size: 26px; }
+        .header-title p { color: var(--primary-red); font-weight: bold; font-size: 18px; margin-top: 5px; }
+
+        h3 { background: var(--dark-blue); color: white; padding: 12px 20px; border-radius: 5px; margin-top: 35px; font-size: 18px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background-color: var(--dark-blue); color: white; padding: 15px; border: 1px solid #34495e; font-size: 15px; }
+        td { border: 1px solid #ddd; padding: 12px; text-align: center; font-size: 15px; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+
+        .input-score { width: 80px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; font-family: inherit; }
+        .avg-cell { font-weight: bold; color: var(--primary-red); font-size: 18px; background-color: #fff9c4; }
+        
+        .status-badge { padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 13px; display: inline-block; min-width: 70px; }
+        .status-m{ background: #c8e6c9; color: #2e7d32; border: 1px solid #2e7d32; } /* متمكن */
+        .status-g{ background: #e3f2fd; color: #1565c0; border: 1px solid #1565c0; } /* جيد */
+        .status-p{ background: #fff3e0; color: #ef6c00; border: 1px solid #ef6c00; } /* مقبول */
+
+        .btn-print { display: block; width: 280px; margin: 40px auto; padding: 15px; background: var(--primary-red); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(211,47,47,0.3); }
+        
+        @media print { .btn-print { display: none; } .container { box-shadow: none; border: none; width: 100%; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="logo.png" alt="شعار الهيئة" class="logo">
+        <div class="header-title">
+            <h1>التقييم النهائي للمراكز</h1>
+            <p>ملخص الأداء العام</p>
+        </div>
+        <div style="width:150px"></div>
+    </div>
+
+    <h3>أولاً: تقييم الفئات (أ، ب، ج) وحساب المتوسط والتصنيف</h3>
+    <table id="categoryTable">
+        <thead>
+            <tr>
+                <th>المركز</th>
+                <th>الفئة أ (100)</th>
+                <th>الفئة ب (100)</th>
+                <th>الفئة ج (100)</th>
+                <th>متوسط المركز</th>
+                <th>التصنيف</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                // تم حصر القائمة في 8 مراكز فقط كما في المستند المرفق
+                const centers = ["مركز الصجعة", "مركز مويلح", "مركز سمنان", "مركز الإدارة", "مركز الميناء", "مركز الحمرية", "مركز الذيد", "مركز المدام"];
+                centers.forEach((center, index) => {
+                    document.write(`
+                        <tr>
+                            <td><b>${center}</b></td>
+                            <td><input type="number" class="input-score c-${index}" placeholder="0" oninput="calcCenter(${index})" max="100"></td>
+                            <td><input type="number" class="input-score c-${index}" placeholder="0" oninput="calcCenter(${index})" max="100"></td>
+                            <td><input type="number" class="input-score c-${index}" placeholder="0" oninput="calcCenter(${index})" max="100"></td>
+                            <td class="avg-cell" id="avg-${index}">0%</td>
+                            <td id="rank-${index}">-</td>
+                        </tr>
+                    `);
+                });
+            </script>
+        </tbody>
+    </table>
+
+    <h3>ثانياً: إحصائيات الأفراد ونسبة النجاح</h3>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 20%;">المركز</th>
+                <th style="width: 15%;">عدد الأفراد</th>
+                <th style="width: 15%;">نسبة النجاح (≥75%)</th>
+                <th style="width: 50%;">ملاحظات الأداء العام</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                centers.forEach(center => {
+                    document.write(`
+                        <tr>
+                            <td><b>${center}</b></td>
+                            <td><input type="number" class="input-score" style="width:100px"></td>
+                            <td><input type="text" class="input-score" style="width:80px" placeholder="%"></td>
+                            <td><input type="text" style="width:95%; padding:10px; border:1px solid #ccc; border-radius:4px;" placeholder="أضف الملاحظات هنا..."></td>
+                        </tr>
+                    `);
+                });
+            </script>
+        </tbody>
+    </table>
+
+    <button class="btn-print" onclick="window.print()">طباعة التقرير النهائي الشامل</button>
+</div>
+
+<script>
+    function calcCenter(idx) {
+        let inputs = document.querySelectorAll('.c-' + idx);
+        let sum = 0;
+        let count = 0;
+        inputs.forEach(input => {
+            if(input.value !== "") {
+                sum += parseFloat(input.value);
+                count++;
+            }
+        });
+        
+        let avg = count > 0 ? (sum / count).toFixed(1) : 0;
+        document.getElementById('avg-' + idx).innerText = avg + "%";
+        
+        let rankCell = document.getElementById('rank-' + idx);
+        if(avg >= 90) { rankCell.innerHTML = '<span class="status-badge status-m">متمكن</span>'; }
+        else if(avg >= 75) { rankCell.innerHTML = '<span class="status-badge status-g">جيد</span>'; }
+        else if(avg > 0) { rankCell.innerHTML = '<span class="status-badge status-p">مقبول</span>'; }
+        else { rankCell.innerText = "-"; }
+    }
+</script>
+
+</body>
+</html>
