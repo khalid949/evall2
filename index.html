@@ -5,34 +5,31 @@
     <title>التقييم النهائي للمراكز</title>
     <style>
         :root { --primary-red: #d32f2f; --dark-blue: #2c3e50; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; direction: rtl; }
-        .container { width: 98%; max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 10px solid var(--primary-red); }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 10px; direction: rtl; }
+        .container { width: 95%; max-width: 1100px; margin: auto; background: white; padding: 15px 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 8px solid var(--primary-red); }
         
-        .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
-        .logo { max-width: 150px; height: auto; }
-        .header-title { text-align: center; flex-grow: 1; }
-        .header-title h1 { color: var(--dark-blue); margin: 0; font-size: 26px; border: 2px solid var(--dark-blue); padding: 10px; display: inline-block; }
+        .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+        .logo { max-width: 120px; height: auto; }
+        .header-title h1 { color: var(--dark-blue); margin: 0; font-size: 22px; border: 2px solid var(--dark-blue); padding: 5px 15px; display: inline-block; }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background-color: var(--dark-blue); color: white; padding: 15px; border: 1px solid #000; font-size: 16px; }
-        td { border: 1px solid #000; padding: 12px; text-align: center; font-size: 16px; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; }
+        th { background-color: var(--dark-blue); color: white; padding: 10px; border: 1px solid #000; font-size: 14px; }
+        td { border: 1px solid #000; padding: 8px; text-align: center; font-size: 14px; font-weight: bold; }
         tr:nth-child(even) { background-color: #f8f9fa; }
 
-        .input-score { width: 70px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; font-size: 16px; }
-        .avg-cell { font-weight: bold; color: var(--primary-red); font-size: 18px; background-color: #fff9c4; }
+        .input-score { width: 55px; padding: 5px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; font-size: 14px; }
+        .avg-cell { font-weight: bold; color: var(--primary-red); font-size: 16px; background-color: #fff9c4; }
         
-        /* تنسيق شارات التصنيف */
-        .status-badge { padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; display: inline-block; min-width: 90px; border: 1px solid; text-align: center; }
+        .status-badge { padding: 4px 10px; border-radius: 15px; font-weight: bold; font-size: 12px; display: inline-block; min-width: 80px; border: 1px solid; text-align: center; }
         .status-excellent { background: #1b5e20; color: white; border-color: #1b5e20; }
         .status-vgood { background: #4caf50; color: white; border-color: #4caf50; }
         .status-good { background: #fff176; color: #f57f17; border-color: #fbc02d; }
         .status-fair { background: #ffcc80; color: #e65100; border-color: #ef6c00; }
         .status-weak { background: #ffcdd2; color: #b71c1c; border-color: #b71c1c; }
 
-        .btn-print { display: block; width: 250px; margin: 30px auto; padding: 15px; background: var(--primary-red); color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .btn-print:hover { background: #b71c1c; transform: translateY(-2px); }
+        .btn-print { display: block; width: 200px; margin: 20px auto; padding: 10px; background: var(--primary-red); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; }
         
-        @media print { .btn-print { display: none; } .container { box-shadow: none; border: none; width: 100%; } input { border: none !important; appearance: none; -moz-appearance: textfield; } }
+        @media print { .btn-print { display: none; } .container { box-shadow: none; border: none; width: 100%; padding: 0; } input { border: none !important; } }
     </style>
 </head>
 <body>
@@ -43,7 +40,7 @@
         <div class="header-title">
             <h1>التقييم النهائي للمراكز</h1>
         </div>
-        <div style="width:150px"></div>
+        <div style="width:120px"></div>
     </div>
 
     <table>
@@ -59,7 +56,7 @@
         </thead>
         <tbody>
             <script>
-                // المراكز الثمانية المطلوبة 
+                // المراكز الثمانية [cite: 2, 3]
                 const centers = ["مركز الصجعة", "مركز مويلح", "مركز سمنان", "مركز الإدارة", "مركز الميناء", "مركز الحمرية", "مركز الذيد", "مركز المدام"];
                 centers.forEach((center, index) => {
                     document.write(`
@@ -83,13 +80,9 @@
 <script>
     function calculate(idx) {
         let inputs = document.querySelectorAll('.c-' + idx);
-        let sum = 0;
-        let count = 0;
+        let sum = 0, count = 0;
         inputs.forEach(input => {
-            if(input.value !== "") {
-                sum += parseFloat(input.value);
-                count++;
-            }
+            if(input.value !== "") { sum += parseFloat(input.value); count++; }
         });
         
         let avg = count > 0 ? (sum / count).toFixed(1) : 0;
@@ -97,13 +90,13 @@
         
         let rankCell = document.getElementById('rank-' + idx);
         
-        // تطبيق المعايير (جيد جداً يبدأ من 80)
-        if(avg >= 90) { rankCell.innerHTML = '<span class="status-badge status-excellent">ممتاز</span>'; }
-        else if(avg >= 80) { rankCell.innerHTML = '<span class="status-badge status-vgood">جيد جداً</span>'; }
-        else if(avg >= 70) { rankCell.innerHTML = '<span class="status-badge status-good">جيد</span>'; }
-        else if(avg >= 60) { rankCell.innerHTML = '<span class="status-badge status-fair">مقبول</span>'; }
-        else if(avg > 0) { rankCell.innerHTML = '<span class="status-badge status-weak">ضعيف</span>'; }
-        else { rankCell.innerText = "-"; }
+        // تطبيق المعايير: جيد جداً يبدأ من 80% [cite: 2, 3]
+        if(avg >= 90) rankCell.innerHTML = '<span class="status-badge status-excellent">ممتاز</span>';
+        else if(avg >= 80) rankCell.innerHTML = '<span class="status-badge status-vgood">جيد جداً</span>';
+        else if(avg >= 70) rankCell.innerHTML = '<span class="status-badge status-good">جيد</span>';
+        else if(avg >= 60) rankCell.innerHTML = '<span class="status-badge status-fair">مقبول</span>';
+        else if(avg > 0) rankCell.innerHTML = '<span class="status-badge status-weak">ضعيف</span>';
+        else rankCell.innerText = "-";
     }
 </script>
 
